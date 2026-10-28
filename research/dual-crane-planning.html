@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" data-lang="en" data-assets="../assets/" data-title-en="Dual-tower-crane path planning in modular construction | Zhaozheng Shen" data-title-zh="模块化施工中的双塔吊路径规划 | 沈召正">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index, follow">
+<meta name="description" content="Construction scheduling, construction robotics, visual learning and crane planning research.">
+<title>Dual-tower-crane path planning in modular construction | Zhaozheng Shen</title>
+<script>if(/[?&]lang=zh/.test(location.search))document.documentElement.setAttribute('data-lang','zh');</script>
+<link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="../index.html"><span class="mark">ZS</span>Zhaozheng Shen <small>沈召正</small></a>
+  <nav class="nav" aria-label="Main"><a href="../index.html"><span data-l="en">Home</span><span data-l="zh">首页</span></a><a href="../research.html" class=on><span data-l="en">Research</span><span data-l="zh">研究</span></a><a href="../publications.html"><span data-l="en">Publications</span><span data-l="zh">论文</span></a><a href="../experience.html"><span data-l="en">Experience</span><span data-l="zh">经历</span></a></nav>
+  <button class="menu-btn" type="button" aria-label="Menu"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <div class="lang" role="group" aria-label="Language"><button type="button" data-set="en" aria-pressed="true">EN</button><button type="button" data-set="zh" aria-pressed="false">中文</button></div>
+</div></header>
+<main>
+<section class="p-hero"><div class="wrap">
+  <div class="crumb"><a href="../index.html"><span data-l="en">Home</span><span data-l="zh">首页</span></a><span>/</span><a href="../research.html#dual-crane-planning"><span data-l="en">Research</span><span data-l="zh">研究</span></a><span>/</span><span><span data-l="en">Dual-tower-crane path planning in modular construction</span><span data-l="zh">模块化施工中的双塔吊路径规划</span></span></div>
+  <div class="p-hero-grid">
+    <div>
+      <div class="chips"><span class="chip blue"><span data-l="en">ISARC 2026 conference paper</span><span data-l="zh">ISARC 2026 会议论文</span></span></div>
+      <h1><span data-l="en">Dual-tower-crane path planning in modular construction</span><span data-l="zh">模块化施工中的双塔吊路径规划</span></h1>
+      
+      <div class="q"><span data-l="en">How can two tower cranes plan coordinated movements in a shared modular-construction environment while reducing collisions?</span><span data-l="zh">如何在模块化施工的共享空间内规划双塔吊运动并减少相互碰撞？</span></div>
+      <p data-l="en">An ISARC 2026 conference paper on coordinated path planning for two tower cranes sharing a modular-construction site. Reinforcement learning plans the lifting paths in a BIM-based Unity environment while avoiding collisions between the cranes and their loads.</p><p data-l="zh">ISARC 2026 会议论文，研究模块化施工现场中两台塔吊在共享空间内的协同路径规划：在基于 BIM 的 Unity 环境中用强化学习规划吊运路径，并避免两台塔吊及其吊物之间的碰撞。</p>
+      <p class="small muted" style="margin-top:14px"><span data-l="en">Role:</span><span data-l="zh">个人贡献：</span> <span data-l="en">Fourth author.</span><span data-l="zh">第四作者。</span></p>
+    </div>
+    <div><figure class="media-frame"><div class="media light"><img class="zoomable" loading="lazy" src="../assets/crane_image11.png" alt="Lifting paths of target modules in the manuscript’s simulated dual-crane environment. S05 Figure 11, paragraph 147. This is path planning, not evidence of active payload anti-sway control." data-alt-en="Lifting paths of target modules in the manuscript’s simulated dual-crane environment. S05 Figure 11, paragraph 147. This is path planning, not evidence of active payload anti-sway control." data-alt-zh="手稿双塔吊仿真环境中的目标模块吊运路径。S05图11，第147段。展示路径规划，不证明主动吊载抑摆。"></div><figcaption><span data-l="en">Lifting paths of the target modules in the simulated dual-tower-crane environment.</span><span data-l="zh">双塔吊仿真环境中目标模块的吊运路径。</span></figcaption></figure></div>
+  </div>
+  
+</div></section><div class="wrap p-body"><aside class="toc"><h5><span data-l="en">On this page</span><span data-l="zh">本页内容</span></h5><a href="#overview"><span data-l="en">Overview</span><span data-l="zh">概览</span></a><a href="#related"><span data-l="en">Related</span><span data-l="zh">相关</span></a></aside><div><section class="p-sec" id="overview"><div class="kicker"><span data-l="en">Approach</span><span data-l="zh">研究方法</span></div><h2 class="h2"><span data-l="en">Overview</span><span data-l="zh">概览</span></h2><div class="approach"><div><h4><span data-l="en">BIM-to-Unity worksite</span><span data-l="zh">BIM 到 Unity 的施工现场</span></h4><p data-l="en">The site is modelled in Revit, exported as IFC and imported into Unity, with crane kinematics and an optimised bounding-box collision check.</p><p data-l="zh">施工现场在 Revit 中建模，以 IFC 导入 Unity，配合塔吊运动学模型与优化的包围盒碰撞检测。</p></div><div><h4><span data-l="en">Staged curriculum learning</span><span data-l="zh">分阶段课程学习</span></h4><p data-l="en">The dual-crane task is split into pathfinding, obstacle avoidance and cooperative manipulation, learned step by step with PPO and imitation learning.</p><p data-l="zh">把双塔吊任务分解为寻路、避障与协同作业，结合 PPO 与模仿学习逐阶段训练。</p></div></div></section><section class="p-sec" id="related"><div class="kicker"><span data-l="en">Related</span><span data-l="zh">相关</span></div><h2 class="h2"><span data-l="en">Related work</span><span data-l="zh">相关工作</span></h2><div class="related"><a href="../publications.html"><small>2026 · <span data-l="en">Conference paper</span><span data-l="zh">会议论文</span></small>Reinforcement Learning–Driven Intelligent Path Planning for Dual Tower Cranes in Modular Construction Sites</a><a href="crane-control.html"><small><span data-l="en">Related project</span><span data-l="zh">相关项目</span></small><span data-l="en">Active anti-sway crane control</span><span data-l="zh">塔吊主动抑摆控制</span></a></div></section></div></div></main>
+<footer class="foot"><div class="wrap">
+  <span>© 2026 Zhaozheng Shen · <a href="mailto:zhaozhengcee@u.nus.edu">zhaozhengcee@u.nus.edu</a> · <span data-l="en">Updated</span><span data-l="zh">更新于</span> 2026-10-23</span>
+  
+</div></footer>
+
+</body>
+</html>

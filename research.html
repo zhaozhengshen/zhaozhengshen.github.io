@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en" data-lang="en" data-assets="assets/" data-title-en="Research | Zhaozheng Shen" data-title-zh="研究 | 沈召正">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index, follow">
+<meta name="description" content="Construction scheduling, construction robotics, visual learning and crane planning research.">
+<title>Research | Zhaozheng Shen</title>
+<script>if(/[?&]lang=zh/.test(location.search))document.documentElement.setAttribute('data-lang','zh');</script>
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html"><span class="mark">ZS</span>Zhaozheng Shen <small>沈召正</small></a>
+  <nav class="nav" aria-label="Main"><a href="index.html"><span data-l="en">Home</span><span data-l="zh">首页</span></a><a href="research.html" class=on><span data-l="en">Research</span><span data-l="zh">研究</span></a><a href="publications.html"><span data-l="en">Publications</span><span data-l="zh">论文</span></a><a href="experience.html"><span data-l="en">Experience</span><span data-l="zh">经历</span></a></nav>
+  <button class="menu-btn" type="button" aria-label="Menu"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <div class="lang" role="group" aria-label="Language"><button type="button" data-set="en" aria-pressed="true">EN</button><button type="button" data-set="zh" aria-pressed="false">中文</button></div>
+</div></header>
+<main><section class="page-head"><div class="wrap">
+  <div class="kicker"><span data-l="en">Research</span><span data-l="zh">研究</span></div><h1><span data-l="en">Research</span><span data-l="zh">研究</span></h1>
+  <p data-l="en" class="lead">My PhD research is on <b>construction robotics and automation</b>: robots that finish interiors of prefabricated modules, collect visual data on their own, lift loads steadily in wind, and understand what to take apart next. My earlier master’s work on intelligent construction scheduling is listed at the end.</p><p data-l="zh" class="lead">我的博士研究方向是<b>施工机器人与建造自动化</b>：在预制模块内完成室内装修的机器人、自主采集视觉数据、在风中平稳吊装，以及判断下一步拆解什么。硕士阶段的智能施工调度研究列在最后。</p>
+  <div class="jump"><a href="#crane-control"><i class="jn">01</i><span data-l="en">Active anti-sway crane control</span><span data-l="zh">塔吊主动抑摆控制</span></a><a href="#crane-site-layout"><i class="jn">02</i><span data-l="en">Tower-crane and site-layout planning</span><span data-l="zh">塔吊与施工场地联合布置</span></a><a href="#active-perception"><i class="jn">03</i><span data-l="en">Autonomous visual data collection</span><span data-l="zh">自主视觉数据采集</span></a><a href="#ppvc-finishing"><i class="jn">04</i><span data-l="en">Robotic interior finishing</span><span data-l="zh">机器人室内装修施工</span></a><a href="#grasp-carry-replanning"><i class="jn">05</i><span data-l="en">Carrying a part through clutter with online replanning</span><span data-l="zh">杂乱工作台上的夹持搬运与在线重规划</span></a><a href="#robotic-disassembly"><i class="jn">06</i><span data-l="en">Visual next-step prediction in robotic disassembly</span><span data-l="zh">机器人拆解的视觉下一步预测</span></a><a href="#steel-frame-scheduling"><i class="jn">07</i><span data-l="en">Intelligent construction scheduling for steel-frame structures</span><span data-l="zh">钢框架结构智能施工调度</span></a></div></div></section><div class="group-head"><div class="wrap"><span class="kicker"><span data-l="en">PhD research</span><span data-l="zh">博士研究</span></span><h2><span data-l="en">Robotics and automation</span><span data-l="zh">机器人与自动化</span></h2></div></div>
+<section class="rblock" id="crane-control"><div class="wrap rgrid">
+  <div class="rtext">
+    <div class="rnum">01</div>
+    <div class="chips"><span class="chip amber dot"><span data-l="en">Ongoing research</span><span data-l="zh">在研项目</span></span><span class="chip">Reinforcement learning</span><span class="chip">Dynamic control</span></div>
+    <h2 class="h2"><span data-l="en">Active anti-sway crane control</span><span data-l="zh">塔吊主动抑摆控制</span></h2>
+    <p data-l="en" class="rsub">Coordinated transport, braking, and stable arrival</p><p data-l="zh" class="rsub">协调吊运、制动与稳定到位</p>
+    <p data-l="en">This work studies learning-based control of tower-crane lifting under wind: moving the load quickly while limiting sway, overshoot and residual motion, and lifting end to end around obstacles in a Unity crane environment.</p><p data-l="zh">该研究关注风扰下塔吊吊装的学习型控制：在快速运输的同时抑制摆动、到位超调与残余运动，并在 Unity 塔吊环境中实现绕障的端到端吊装。</p>
+    <ul class="check"><li><span data-l="en">Control motion throughout transport</span><span data-l="zh">控制整个运输过程中的运动</span></li><li><span data-l="en">Brake without leaving residual motion</span><span data-l="zh">制动时减少残余运动</span></li><li><span data-l="en">Examine robustness and retained capability</span><span data-l="zh">检验鲁棒性与能力保持</span></li></ul>
+    <a class="rel-card" href="research/dual-crane-planning.html"><small><span data-l="en">Related collaboration</span><span data-l="zh">相关合作研究</span> · <span data-l="en">ISARC 2026 conference paper</span><span data-l="zh">ISARC 2026 会议论文</span></small><b><span data-l="en">Dual-tower-crane path planning in modular construction</span><span data-l="zh">模块化施工中的双塔吊路径规划</span></b></a>
+    <div class="inside"><b><span data-l="en">On the detail page</span><span data-l="zh">详细页内容</span></b><span data-l="en">Evaluation criteria, Unity recordings from six cameras, and an interactive viewer of end-to-end RL lifts</span><span data-l="zh">评价标准、六个机位的 Unity 录像，以及端到端强化学习吊装的交互查看器</span></div>
+    <a class="btn primary" href="research/crane-control.html"><span data-l="en">View details</span><span data-l="zh">查看详细内容</span> →</a>
+  </div>
+  <div class="mosaic n2"><a class="cell" href="research/crane-control.html"><img loading="lazy" src="assets/portal_crane_unity_frame.png" alt="Unity tower-crane scene" data-alt-en="Unity tower-crane scene" data-alt-zh="Unity 塔吊场景"><span class="badge"><span data-l="en">Unity tower-crane scene</span><span data-l="zh">Unity 塔吊场景</span></span></a><a class="cell light" href="research/crane-control.html"><img loading="lazy" src="assets/portal_crane_criteria.png" alt="Transport-and-settling criterion" data-alt-en="Transport-and-settling criterion" data-alt-zh="运输与停稳判据"><span class="badge"><span data-l="en">Transport-and-settling criterion</span><span data-l="zh">运输与停稳判据</span></span></a></div>
+</div></section>
+<section class="rblock alt" id="crane-site-layout"><div class="wrap rgrid rev">
+  <div class="rtext">
+    <div class="rnum">02</div>
+    <div class="chips"><span class="chip amber dot"><span data-l="en">Ongoing research</span><span data-l="zh">在研项目</span></span><span class="chip">Reinforcement learning</span><span class="chip">Site layout</span><span class="chip">Tower cranes</span></div>
+    <h2 class="h2"><span data-l="en">Tower-crane and site-layout planning</span><span data-l="zh">塔吊与施工场地联合布置</span></h2>
+    <p data-l="en" class="rsub">Choosing cranes and placing temporary facilities across construction stages</p><p data-l="zh" class="rsub">跨施工阶段的塔吊选型定位与临时设施布置</p>
+    <p data-l="en">A construction site has to place yards, workshops and offices, and choose where to stand which tower cranes, for every stage of the build. This work treats the whole plan as one sequence of decisions and trains a reinforcement-learning policy to generate it end to end, then checks every plan with an independent evaluator.</p><p data-l="zh">施工现场在每个阶段都要布置堆场、车间与办公设施，并决定选用哪些塔吊、立在哪里。该研究把整套方案看作一串连续决策，训练强化学习策略端到端生成，并用独立评价程序逐一复核每个方案。</p>
+    <ul class="check"><li><span data-l="en">One RL policy picks the crane fleet and places all 16 facilities, stage by stage</span><span data-l="zh">一个强化学习策略逐阶段选定塔吊编队，并布置全部 16 个临时设施</span></li><li><span data-l="en">A complete plan in 0.04 s, against 8 s for GA + integer programming, at a 0.35 % higher cost</span><span data-l="zh">0.04 秒生成完整方案，GA＋整数规划约需 8 秒；费用高 0.35 %</span></li><li><span data-l="en">A stricter operational model with multi-crane fleets and integer dispatch of 36,000 lifts</span><span data-l="zh">更严格的作业层模型：多塔吊编队与 36,000 次吊运的整数分配</span></li></ul>
+    
+    <div class="inside"><b><span data-l="en">On the detail page</span><span data-l="zh">详细页内容</span></b><span data-l="en">An animated site player (RL vs GA), a real-time solve-time race and a multi-crane dispatch replay</span><span data-l="zh">可交互的场地动画（RL 与 GA 对照）、实时求解用时对比与多塔吊吊运分配回放</span></div>
+    <a class="btn primary" href="research/crane-site-layout.html"><span data-l="en">View details</span><span data-l="zh">查看详细内容</span> →</a>
+  </div>
+  <div class="mosaic n1"><a class="cell light" href="research/crane-site-layout.html"><video muted loop playsinline autoplay preload="metadata" src="assets/layout_overview.mp4" aria-label="v1 RL plan · v2 multi-crane dispatch"></video><span class="badge"><span data-l="en">v1 RL plan · v2 multi-crane dispatch</span><span data-l="zh">v1 RL 方案 · v2 多塔吊分配</span></span></a></div>
+</div></section>
+<section class="rblock" id="active-perception"><div class="wrap rgrid">
+  <div class="rtext">
+    <div class="rnum">03</div>
+    <div class="chips"><span class="chip amber dot"><span data-l="en">Ongoing research</span><span data-l="zh">在研项目</span></span><span class="chip">Active perception</span><span class="chip">BIM + RL</span></div>
+    <h2 class="h2"><span data-l="en">Autonomous visual data collection</span><span data-l="zh">自主视觉数据采集</span></h2>
+    <p data-l="en" class="rsub">Learning where to move — and when to look</p><p data-l="zh" class="rsub">学习去哪里移动，以及何时观察</p>
+    <p data-l="en">A mobile robot learns where to move and when to capture images, building a 3D scan of the floor as it explores.</p><p data-l="zh">移动机器人学习去哪里移动、何时采集图像，在探索过程中逐步建立整层楼的 3D 扫描。</p>
+  </div>
+  <div class="mosaic n1"><div class="cell"><video muted loop playsinline autoplay preload="metadata" src="assets/ap_05_3d_scan_buildup.mp4" aria-label="3D scan built up along the robot’s route"></video><span class="badge"><span data-l="en">3D scan built up along the robot’s route</span><span data-l="zh">沿机器人路线逐步生长的 3D 扫描</span></span></div></div>
+</div></section>
+<section class="rblock alt" id="ppvc-finishing"><div class="wrap rgrid rev solo">
+  <div class="rtext">
+    <div class="rnum">04</div>
+    <div class="chips"><span class="chip amber dot"><span data-l="en">Ongoing BCA project</span><span data-l="zh">BCA 在研项目</span></span><span class="chip">Construction robotics</span><span class="chip">BCA</span></div>
+    <h2 class="h2"><span data-l="en">Robotic interior finishing</span><span data-l="zh">机器人室内装修施工</span></h2>
+    <p data-l="en" class="rsub">Robot workflows for prefabricated construction</p><p data-l="zh" class="rsub">面向预制建筑的机器人施工流程</p>
+    <p data-l="en">A Building and Construction Authority (BCA) project on robots for interior finishing of prefabricated modules, such as wall tiling and spraying within confined spaces.</p><p data-l="zh">新加坡建设局（BCA）项目：面向预制模块的室内装修机器人，例如在受限空间内完成墙面贴砖与喷涂。</p>
+  </div>
+  
+</div></section>
+<section class="rblock" id="grasp-carry-replanning"><div class="wrap rgrid">
+  <div class="rtext">
+    <div class="rnum">05</div>
+    <div class="chips"><span class="chip green"><span data-l="en">Research · 2026</span><span data-l="zh">研究 · 2026</span></span><span class="chip">Motion planning</span><span class="chip">A*</span><span class="chip">MuJoCo</span><span class="chip">Replanning</span></div>
+    <h2 class="h2"><span data-l="en">Carrying a part through clutter with online replanning</span><span data-l="zh">杂乱工作台上的夹持搬运与在线重规划</span></h2>
+    <p data-l="en" class="rsub">Grasping a part and carrying it through dense, moving clutter · MuJoCo contact simulation</p><p data-l="zh" class="rsub">夹持工件穿过密集且移动的障碍 · MuJoCo 接触仿真</p>
+    <p data-l="en">A UR5e with a Robotiq gripper picks a coloured part and carries it across a dense workbench: eleven static groups with random offsets and rotations, plus two carts that drive into the corridors. A* on a collision-checked roadmap gives the route; a two-second look-ahead watches the carts. When the way ahead is blocked the arm brakes and a background thread searches a new route while the physics keeps running; if no corridor is free, it waits.</p><p data-l="zh">UR5e 配 Robotiq 夹爪抓起一个彩色工件，穿过密集的工作台：11 组带随机偏移与旋转的静态物件，外加两台会驶入通道的料车。路线由碰撞检查后的路网上的 A* 搜索给出，2 秒前瞻持续监视料车。前方受阻时机械臂先制动，后台线程在物理仿真不停的情况下搜索新路线；没有可通行的通道时则原地等待。</p>
+    <ul class="check"><li><span data-l="en">UR5e + Robotiq carries a part across 11 cluttered groups and two moving carts</span><span data-l="zh">UR5e + Robotiq 夹持工件穿过 11 组杂物与两台移动料车</span></li><li><span data-l="en">A* on a whole-arm collision-checked roadmap, 2 s look-ahead, asynchronous replanning</span><span data-l="zh">整臂碰撞检查路网上的 A*、2 秒前瞻、异步重规划</span></li><li><span data-l="en">Re-routing finished a matched scene in 31.6 s, against 45.1 s when only waiting</span><span data-l="zh">在同一场景中换路用时 31.6 s，只等待则需 45.1 s</span></li></ul>
+    
+    <div class="inside"><b><span data-l="en">On the detail page</span><span data-l="zh">详细页内容</span></b><span data-l="en">A 3D replay of the recorded physics with the original robot meshes, videos, and the maze and vision stages</span><span data-l="zh">使用原始机器人网格的物理记录三维回放、视频，以及迷宫与视觉阶段</span></div>
+    <a class="btn primary" href="research/grasp-carry-replanning.html"><span data-l="en">View details</span><span data-l="zh">查看详细内容</span> →</a>
+  </div>
+  <div class="mosaic n2"><a class="cell" href="research/grasp-carry-replanning.html"><video muted loop playsinline autoplay preload="metadata" src="assets/me5402_live_online.mp4" aria-label="Online replanning"></video><span class="badge"><span data-l="en">Online replanning</span><span data-l="zh">在线重规划</span></span></a><a class="cell" href="research/grasp-carry-replanning.html"><img loading="lazy" src="assets/me5402_maze.jpg" alt="25-cell maze, A*" data-alt-en="25-cell maze, A*" data-alt-zh="25 格迷宫 · A*"><span class="badge"><span data-l="en">25-cell maze, A*</span><span data-l="zh">25 格迷宫 · A*</span></span></a></div>
+</div></section>
+<section class="rblock alt" id="robotic-disassembly"><div class="wrap rgrid rev">
+  <div class="rtext">
+    <div class="rnum">06</div>
+    <div class="chips"><span class="chip green"><span data-l="en">Research manuscript and existing cross-validation</span><span data-l="zh">研究手稿与既有交叉验证</span></span></div>
+    <h2 class="h2"><span data-l="en">Visual next-step prediction in robotic disassembly</span><span data-l="zh">机器人拆解的视觉下一步预测</span></h2>
+    
+    <p data-l="en">This draft studies next-step prediction in robotic disassembly using component detections and structured temporal states. Existing robot-wise validation compares the sequence model with YOLO-CLS and shows a remaining cross-robot generalization gap.</p><p data-l="zh">该草稿利用部件检测与结构化时序状态研究机器人拆解的下一步预测。已有按机器人划分的验证对比时序模型与 YOLO-CLS，并显示跨机器人泛化仍有提升空间。</p>
+    <ul class="check"><li><span data-l="en">Detection and temporal evidence</span><span data-l="zh">检测与时序证据</span></li></ul>
+    
+    <div class="inside"><b><span data-l="en">On the detail page</span><span data-l="zh">详细页内容</span></b><span data-l="en">Method outline, dataset example and existing robot-wise cross-validation</span><span data-l="zh">方法概要、数据集示例与既有按机器人划分的交叉验证</span></div>
+    <a class="btn primary" href="research/robotic-disassembly.html"><span data-l="en">View details</span><span data-l="zh">查看详细内容</span> →</a>
+  </div>
+  <div class="mosaic n2"><a class="cell" href="research/robotic-disassembly.html"><img loading="lazy" src="assets/disassembly_sample.jpg" alt="Disassembly dataset frame" data-alt-en="Disassembly dataset frame" data-alt-zh="拆解数据集帧"><span class="badge"><span data-l="en">Disassembly dataset frame</span><span data-l="zh">拆解数据集帧</span></span></a><a class="cell light" href="research/robotic-disassembly.html"><img loading="lazy" src="assets/disassembly_cv.png" alt="Robot-wise five-fold validation" data-alt-en="Robot-wise five-fold validation" data-alt-zh="按机器人五折验证"><span class="badge"><span data-l="en">Robot-wise five-fold validation</span><span data-l="zh">按机器人五折验证</span></span></a></div>
+</div></section><div class="group-head"><div class="wrap"><span class="kicker"><span data-l="en">Earlier research</span><span data-l="zh">早期研究</span></span><h2><span data-l="en">Master’s research at Tongji University</span><span data-l="zh">同济大学硕士阶段研究</span></h2></div></div>
+<section class="rblock" id="steel-frame-scheduling"><div class="wrap rgrid">
+  <div class="rtext">
+    <div class="rnum">07</div>
+    <div class="chips"><span class="chip green"><span data-l="en">Master’s research · 2024–2025 papers and 2025 thesis</span><span data-l="zh">硕士研究 · 2024–2025年论文与2025年学位论文</span></span></div>
+    <h2 class="h2"><span data-l="en">Intelligent construction scheduling for steel-frame structures</span><span data-l="zh">钢框架结构智能施工调度</span></h2>
+    
+    <p data-l="en">BIM-derived component constraints support a connected workflow for steel-frame construction scheduling. The work covers sequential installation with DADGA, resource-constrained trade-offs with MOACS, and dynamic scheduling with a Dueling Double DQN that selects dispatching rules.</p><p data-l="zh">BIM 构件约束支持钢框架施工调度的一体化流程。该系列包括 DADGA 串行安装排序、MOACS 资源受限多目标折中，以及通过决斗双深度 Q 网络选择调度规则的动态调度。</p>
+    <ul class="check"><li><span data-l="en">Constructability constraints derived from BIM — 2,765 for a 1,165-member steel frame</span><span data-l="zh">从 BIM 自动提取可施工性约束 —— 1,165 构件钢框架共 2,765 条</span></li><li><span data-l="en">MOACS: duration, cost and carbon trade-offs with three construction teams</span><span data-l="zh">MOACS：三个施工班组下权衡工期、成本与碳排放</span></li><li><span data-l="en">DADGA: feasible installation sequences under BIM constraints</span><span data-l="zh">DADGA：满足 BIM 约束的可行安装顺序</span></li><li><span data-l="en">Dynamic dispatching with deep reinforcement learning (under re-evaluation)</span><span data-l="zh">基于深度强化学习的动态调度（正在复核）</span></li></ul>
+    
+    <div class="inside"><b><span data-l="en">On the detail page</span><span data-l="zh">详细页内容</span></b><span data-l="en">Interactive 3D constraint network, MOACS Pareto fronts and a 4D replay of the three-team, 1,165-member schedule</span><span data-l="zh">可交互的 3D 约束网络、MOACS 帕累托前沿，以及三班组 1,165 构件施工方案的 4D 回放</span></div>
+    <a class="btn primary" href="research/steel-frame-scheduling.html"><span data-l="en">View details</span><span data-l="zh">查看详细内容</span> →</a>
+  </div>
+  <div class="mosaic n2"><a class="cell" href="research/steel-frame-scheduling.html"><img loading="lazy" src="assets/dadga_bim_cover.jpg" alt="BIM installation sequence" data-alt-en="BIM installation sequence" data-alt-zh="BIM 安装顺序"><span class="badge"><span data-l="en">BIM installation sequence</span><span data-l="zh">BIM 安装顺序</span></span></a><a class="cell light" href="research/steel-frame-scheduling.html"><img loading="lazy" src="assets/moacs_sequence.jpg" alt="BIM-4D · three teams" data-alt-en="BIM-4D · three teams" data-alt-zh="BIM-4D · 三班组"><span class="badge"><span data-l="en">BIM-4D · three teams</span><span data-l="zh">BIM-4D · 三班组</span></span></a></div>
+</div></section><div class="group-head"><div class="wrap"><span class="kicker"><span data-l="en">Course projects</span><span data-l="zh">课程项目</span></span><h2><span data-l="en">NUS ME5402 Advanced Robotics</span><span data-l="zh">新加坡国立大学 ME5402 高级机器人学</span></h2></div></div>
+<section class="rblock alt" id="me5402-sorting"><div class="wrap rgrid rev">
+  <div class="rtext">
+    <div class="rnum">08</div>
+    <div class="chips"><span class="chip green"><span data-l="en">Course project · 2026</span><span data-l="zh">课程项目 · 2026</span></span><span class="chip">Deep RL</span><span class="chip">Pick-and-place</span><span class="chip">CoppeliaSim</span><span class="chip">PyTorch</span></div>
+    <h2 class="h2"><span data-l="en">Vision-based object sorting with deep reinforcement learning</span><span data-l="zh">基于视觉与深度强化学习的物体分拣</span></h2>
+    <p data-l="en" class="rsub">NUS ME5402 Advanced Robotics · Part 1 group project (Group 5)</p><p data-l="zh" class="rsub">新加坡国立大学 ME5402 高级机器人学 · 第一部分小组项目（第 5 组）</p>
+    <p data-l="en">A UR5 arm with an RG2 gripper sorts coloured blocks into matching bins. A pixel-wise Q-learning policy (DRLSorting, Bao et al., Robotica 2022) looks at an RGB-D heightmap and decides where to push, grasp and place. I reproduced the published policy in CoppeliaSim and added the perception layer our group proposed: contour-centred grasp points, explicit target-bin placing and no repeat of failed grasps.</p><p data-l="zh">UR5 机械臂配 RG2 夹爪，把彩色积木分拣到同色料框。像素级 Q 学习策略（DRLSorting，Bao 等，Robotica 2022）读取 RGB-D 高度图，决定在哪里推、抓与放。我在 CoppeliaSim 中复现了论文公开的策略，并加入小组提出的感知层：按轮廓质心抓取、显式选择目标料框放置、不重复失败的抓取。</p>
+    <ul class="check"><li><span data-l="en">Reproduced the published DRLSorting policy (Robotica 2022) in CoppeliaSim on the paper’s preset scenes</span><span data-l="zh">在 CoppeliaSim 中按论文预设场景复现公开的 DRLSorting 策略（Robotica 2022）</span></li><li><span data-l="en">Added the group’s proposal: contour-centred grasps, explicit target bins, no repeated failed grasps</span><span data-l="zh">加入小组方案：轮廓质心抓取、显式目标料框、不重复失败抓取</span></li><li><span data-l="en">Step-by-step Q-value maps and the authors’ learning curves</span><span data-l="zh">逐步 Q 值图与作者的学习曲线</span></li></ul>
+    
+    <div class="inside"><b><span data-l="en">On the detail page</span><span data-l="zh">详细页内容</span></b><span data-l="en">Robot video, a step-through of the policy’s Q maps, learning curves and the baseline-vs-add-on evaluation</span><span data-l="zh">机器人录像、策略 Q 值图逐步回放、学习曲线以及基线与感知层的对比评估</span></div>
+    <a class="btn primary" href="research/me5402-sorting.html"><span data-l="en">View details</span><span data-l="zh">查看详细内容</span> →</a>
+  </div>
+  <div class="mosaic n1"><a class="cell" href="research/me5402-sorting.html"><img loading="lazy" src="assets/me5402_sort_qmap.jpg" alt="Heightmap and grasp Q map" data-alt-en="Heightmap and grasp Q map" data-alt-zh="高度图与抓取 Q 值图"><span class="badge"><span data-l="en">Heightmap and grasp Q map</span><span data-l="zh">高度图与抓取 Q 值图</span></span></a></div>
+</div></section>
+<section class="rblock" id="me5402-wheel-leg"><div class="wrap rgrid">
+  <div class="rtext">
+    <div class="rnum">09</div>
+    <div class="chips"><span class="chip green"><span data-l="en">Course project · 2026</span><span data-l="zh">课程项目 · 2026</span></span><span class="chip">Kinematics</span><span class="chip">Dynamics</span><span class="chip">PID</span><span class="chip">Python</span></div>
+    <h2 class="h2"><span data-l="en">Modelling and PID control of a wheel-legged robot limb</span><span data-l="zh">轮腿机器人单腿的建模与 PID 控制</span></h2>
+    <p data-l="en" class="rsub">NUS ME5402 Advanced Robotics · Part 2 individual project</p><p data-l="zh" class="rsub">新加坡国立大学 ME5402 高级机器人学 · 第二部分个人项目</p>
+    <p data-l="en">One limb of a TRON 1-inspired wheel-legged robot is reduced to a planar 3R chain. I derived its D-H model, Jacobian and inverse kinematics, its Lagrange–Euler and Newton–Euler dynamics, simulated open-loop take-off and aerial phases, and designed a gravity-compensated joint-space PID controller that tracks a 30 mm circle with about 1 mm mean error.</p><p data-l="zh">将 TRON 1 式轮腿机器人的一条腿简化为平面 3R 串联机构，推导了 D-H 模型、雅可比与逆运动学，以及拉格朗日–欧拉与牛顿–欧拉动力学；仿真了起跳与腾空两个开环阶段，并设计了带重力补偿的关节空间 PID 控制器，使轮轴中心以约 1 mm 的平均误差跟踪 30 mm 圆轨迹。</p>
+    <ul class="check"><li><span data-l="en">Planar 3R model of one TRON 1-style limb: FK, Jacobian, two-branch IK</span><span data-l="zh">TRON 1 式单腿的平面 3R 模型：正运动学、雅可比、双解逆运动学</span></li><li><span data-l="en">Lagrange–Euler and Newton–Euler dynamics; open-loop take-off and aerial phases</span><span data-l="zh">拉格朗日–欧拉与牛顿–欧拉动力学；开环起跳与腾空阶段</span></li><li><span data-l="en">Gravity feed-forward cuts mean end-effector error from 227 mm to 1.0 mm</span><span data-l="zh">重力前馈把末端平均误差从 227 mm 降到 1.0 mm</span></li></ul>
+    
+    <div class="inside"><b><span data-l="en">On the detail page</span><span data-l="zh">详细页内容</span></b><span data-l="en">Live simulations in the browser: kinematics explorer, open-loop dynamics, PID tuning, gain and payload sweeps</span><span data-l="zh">浏览器内实时仿真：运动学探索、开环动力学、PID 调参、增益与负载扫描</span></div>
+    <a class="btn primary" href="research/me5402-wheel-leg.html"><span data-l="en">View details</span><span data-l="zh">查看详细内容</span> →</a>
+  </div>
+  <div class="mosaic n2"><a class="cell" href="research/me5402-wheel-leg.html"><video muted loop playsinline autoplay preload="metadata" src="assets/me5402_limb_tracking.mp4" aria-label="PID tracking, case B"></video><span class="badge"><span data-l="en">PID tracking, case B</span><span data-l="zh">PID 跟踪 · 方案 B</span></span></a><a class="cell light" href="research/me5402-wheel-leg.html"><img loading="lazy" src="assets/me5402_pid_parameter_comparison.png" alt="Two gain sets compared" data-alt-en="Two gain sets compared" data-alt-zh="两组增益对比"><span class="badge"><span data-l="en">Two gain sets compared</span><span data-l="zh">两组增益对比</span></span></a></div>
+</div></section></main>
+<footer class="foot"><div class="wrap">
+  <span>© 2026 Zhaozheng Shen · <a href="mailto:zhaozhengcee@u.nus.edu">zhaozhengcee@u.nus.edu</a> · <span data-l="en">Updated</span><span data-l="zh">更新于</span> 2026-10-23</span>
+  
+</div></footer>
+
+</body>
+</html>

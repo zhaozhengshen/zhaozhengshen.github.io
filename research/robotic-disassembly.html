@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" data-lang="en" data-assets="../assets/" data-title-en="Visual next-step prediction in robotic disassembly | Zhaozheng Shen" data-title-zh="机器人拆解的视觉下一步预测 | 沈召正">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index, follow">
+<meta name="description" content="Construction scheduling, construction robotics, visual learning and crane planning research.">
+<title>Visual next-step prediction in robotic disassembly | Zhaozheng Shen</title>
+<script>if(/[?&]lang=zh/.test(location.search))document.documentElement.setAttribute('data-lang','zh');</script>
+<link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="../index.html"><span class="mark">ZS</span>Zhaozheng Shen <small>沈召正</small></a>
+  <nav class="nav" aria-label="Main"><a href="../index.html"><span data-l="en">Home</span><span data-l="zh">首页</span></a><a href="../research.html" class=on><span data-l="en">Research</span><span data-l="zh">研究</span></a><a href="../publications.html"><span data-l="en">Publications</span><span data-l="zh">论文</span></a><a href="../experience.html"><span data-l="en">Experience</span><span data-l="zh">经历</span></a></nav>
+  <button class="menu-btn" type="button" aria-label="Menu"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <div class="lang" role="group" aria-label="Language"><button type="button" data-set="en" aria-pressed="true">EN</button><button type="button" data-set="zh" aria-pressed="false">中文</button></div>
+</div></header>
+<main>
+<section class="p-hero"><div class="wrap">
+  <div class="crumb"><a href="../index.html"><span data-l="en">Home</span><span data-l="zh">首页</span></a><span>/</span><a href="../research.html#robotic-disassembly"><span data-l="en">Research</span><span data-l="zh">研究</span></a><span>/</span><span><span data-l="en">Visual next-step prediction in robotic disassembly</span><span data-l="zh">机器人拆解的视觉下一步预测</span></span></div>
+  <div class="p-hero-grid">
+    <div>
+      <div class="chips"><span class="chip blue"><span data-l="en">Research manuscript and existing cross-validation</span><span data-l="zh">研究手稿与既有交叉验证</span></span></div>
+      <h1><span data-l="en">Visual next-step prediction in robotic disassembly</span><span data-l="zh">机器人拆解的视觉下一步预测</span></h1>
+      
+      <div class="q"><span data-l="en">Can temporal component evidence support the prediction of the next disassembly step across different robot-vacuum units?</span><span data-l="zh">如何用扫地机器人部件的时序视觉证据预测下一拆解步骤，并评估跨机器人泛化？</span></div>
+      <p data-l="en">This draft studies next-step prediction in robotic disassembly using component detections and structured temporal states. Existing robot-wise validation compares the sequence model with YOLO-CLS and shows a remaining cross-robot generalization gap.</p><p data-l="zh">该草稿利用部件检测与结构化时序状态研究机器人拆解的下一步预测。已有按机器人划分的验证对比时序模型与 YOLO-CLS，并显示跨机器人泛化仍有提升空间。</p>
+      
+    </div>
+    <div><figure class="media-frame"><div class="media light"><img class="zoomable" loading="lazy" src="../assets/disassembly_cv.png" alt="Replot of existing robot-wise five-fold data. Dots show individual folds; squares and error bars show mean ± sample SD. Both metric axes span 0–1; one seed per fold." data-alt-en="Replot of existing robot-wise five-fold data. Dots show individual folds; squares and error bars show mean ± sample SD. Both metric axes span 0–1; one seed per fold." data-alt-zh="既有按机器人划分的五折数据重绘。圆点为各折，方块与误差线为均值±样本标准差；两项指标坐标范围均为0–1，每折一个种子。"></div><figcaption><span data-l="en">Robot-wise five-fold validation: dots are individual folds; squares and bars show mean ± SD.</span><span data-l="zh">按机器人划分的五折验证：圆点为各折结果，方块与误差线为均值 ± 标准差。</span></figcaption></figure></div>
+  </div>
+  
+</div></section><div class="wrap p-body"><aside class="toc"><h5><span data-l="en">On this page</span><span data-l="zh">本页内容</span></h5><a href="#overview"><span data-l="en">Overview</span><span data-l="zh">概览</span></a><a href="#results"><span data-l="en">Results</span><span data-l="zh">结果</span></a><a href="#media"><span data-l="en">Media</span><span data-l="zh">图像与视频</span></a><a href="#manuscript"><span data-l="en">Manuscript</span><span data-l="zh">手稿</span></a></aside><div><section class="p-sec" id="overview"><div class="kicker"><span data-l="en">Approach</span><span data-l="zh">研究方法</span></div><h2 class="h2"><span data-l="en">Overview</span><span data-l="zh">概览</span></h2><div class="approach"><div><h4><span data-l="en">Detection and temporal evidence</span><span data-l="zh">检测与时序证据</span></h4><p data-l="en">The method combines YOLO component detections, body/housing anchor selection, ternary component states and a temporal Transformer that predicts the next disassembly action.</p><p data-l="zh">该方法结合 YOLO 部件检测、body/housing 锚点筛选、三值部件状态与时序 Transformer，预测下一步拆解动作。</p></div></div></section><section class="p-sec" id="results"><div class="kicker"><span data-l="en">Existing records</span><span data-l="zh">既有记录</span></div><h2 class="h2"><span data-l="en">Results</span><span data-l="zh">结果</span></h2><div class="res"><span data-l="en">Robot-wise five-fold cross-validation: the sequence model reaches accuracy 0.5721 ± 0.0810 and macro-F1 0.5443 ± 0.1049, compared with 0.5260 ± 0.0353 and 0.4967 ± 0.0378 for YOLO-CLS (mean ± SD across folds).</span><span data-l="zh">按机器人划分的五折交叉验证：时序模型 accuracy 0.5721 ± 0.0810、macro-F1 0.5443 ± 0.1049；YOLO-CLS 分别为 0.5260 ± 0.0353 和 0.4967 ± 0.0378（各折均值 ± 标准差）。</span></div></section><section class="p-sec" id="media"><div class="kicker"><span data-l="en">Figures & recordings</span><span data-l="zh">图与录像</span></div><h2 class="h2"><span data-l="en">Media</span><span data-l="zh">图像与视频</span></h2><div class="grid g2"><figure class="card"><div class="media light"><img class="zoomable" loading="lazy" src="../assets/disassembly_sample.jpg" alt="An existing robot-vacuum disassembly dataset frame. It illustrates visual input, not autonomous task completion." data-alt-en="An existing robot-vacuum disassembly dataset frame. It illustrates visual input, not autonomous task completion." data-alt-zh="既有扫地机器人拆解数据集帧，展示视觉输入，不表示自主任务完成。"></div><figcaption><span data-l="en">A frame from the robot-vacuum disassembly dataset.</span><span data-l="zh">扫地机器人拆解数据集中的一帧。</span></figcaption></figure></div></section><section class="p-sec" id="manuscript"><div class="kicker"><span data-l="en">Manuscript</span><span data-l="zh">研究手稿</span></div><h2 class="h2"><span data-l="en">Manuscript</span><span data-l="zh">手稿</span></h2><div class="res"><b style="font-size:16px">RIVET: A Multi-frame YOLO-Transformer for Next-Step Prediction in Robotic Disassembly</b><div class="small muted" style="margin-top:6px"><span class="me">Zhaozheng Shen</span>, Yang Ye</div></div></section></div></div></main>
+<footer class="foot"><div class="wrap">
+  <span>© 2026 Zhaozheng Shen · <a href="mailto:zhaozhengcee@u.nus.edu">zhaozhengcee@u.nus.edu</a> · <span data-l="en">Updated</span><span data-l="zh">更新于</span> 2026-10-23</span>
+  
+</div></footer>
+
+</body>
+</html>
