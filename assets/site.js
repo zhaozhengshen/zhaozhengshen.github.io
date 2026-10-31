@@ -110,3 +110,168 @@
     });
   });
 })();
+
+/* Website interaction analytics v1. Aggregate events only; no form values or URL queries. */
+(function () {
+  'use strict';
+  function init() {
+    var page = location.pathname.replace(/\/index\.html$/, '/') || '/';
+    var pageName = page === '/' ? '首页' : page;
+    var queue = [], retry = null, attempts = 0;
+    function flush() {
+      var gc = window.goatcounter;
+      if (!gc || typeof gc.count !== 'function') return;
+      if (retry) { clearInterval(retry); retry = null; }
+      if (gc.filter && gc.filter()) { queue = []; return; }
+      queue.splice(0).forEach(function (item) {
+        try { gc.count(item); } catch (ignore) { /* Analytics must not interrupt the site. */ }
+      });
+    }
+    function track(kind, label, detail) {
+      queue.push({
+        path: 'event/' + kind + page + (detail ? '::' + detail : ''),
+        title: label + ' · ' + pageName + (detail ? ' · ' + detail : ''),
+        referrer: location.origin + page,
+        event: true,
+        no_session: true
+      });
+      if (queue.length > 30) queue.shift();
+      flush();
+      if (queue.length && !retry) {
+        attempts = 0;
+        retry = setInterval(function () {
+          flush();
+          if (++attempts >= 30) { clearInterval(retry); retry = null; queue = []; }
+        }, 500);
+      }
+    }
+    function resource(value) {
+      try { return new URL(value, location.href).pathname; }
+      catch (ignore) { return ''; }
+    }
+
+    document.addEventListener('click', function (event) {
+      var target = event.target;
+      if (!target || !target.closest) return;
+      var lang = target.closest('.lang button[data-set]');
+      if (lang && lang.getAttribute('aria-pressed') !== 'true') {
+        track('language-switch', '切换语言', lang.getAttribute('data-set'));
+      }
+      var button = target.closest('button');
+      if (button && /^(pvPlay|stepPlay)$/.test(button.id)) {
+        // These controls toggle playback; only the start action is counted.
+        if (/play|播放/i.test(button.getAttribute('aria-label') || button.textContent || '')) {
+          track('demo-play', '启动交互演示', button.id);
+        }
+      }
+      var link = target.closest('a[href]');
+      if (!link || link.hasAttribute('data-goatcounter-click')) return;
+      var href = link.getAttribute('href') || '';
+      if (/^mailto:/i.test(href)) { track('email-click', '点击联系邮箱'); return; }
+      var url;
+      try { url = new URL(href, location.href); } catch (ignore) { return; }
+      if (!/^https?:$/.test(url.protocol)) return;
+      var file = url.pathname;
+      if (/\.pdf$/i.test(file)) {
+        track(/(?:^|[_\/-])cv(?:[_\/.\-]|$)/i.test(file) ? 'cv-download' : 'paper-download',
+          /(?:^|[_\/-])cv(?:[_\/.\-]|$)/i.test(file) ? '点击简历下载' : '点击论文或文档', file);
+      } else if (/^(dx\.)?doi\.org$/i.test(url.hostname)) {
+        track('paper-link', '打开论文 DOI', file);
+      } else if (url.origin !== location.origin) {
+        track('external-link', '打开外部链接', url.hostname + file);
+      } else if (/\/research\/[^/]+\.html$/.test(file)) {
+        track('project-open', '进入项目详情', file);
+      } else if (url.hash && (file === '/research.html' || file === page)) {
+        track('section-open', '查看研究章节', url.hash);
+      }
+    }, true);
+
+    document.querySelectorAll('video').forEach(function (video) {
+      var automatic = video.hasAttribute('autoplay') || video.hasAttribute('data-autoplay');
+      var intentional = !automatic, started = false, ranges = [], previous = null, milestones = {};
+      function name() {
+        return resource(video.currentSrc || video.getAttribute('data-src') || video.getAttribute('src') ||
+          (video.querySelector('source') && video.querySelector('source').getAttribute('src')) || '');
+      }
+      function start() {
+        if (intentional && !started) { started = true; track('video-play', '主动播放视频', name()); }
+      }
+      video.addEventListener('pointerdown', function () { intentional = true; });
+      video.addEventListener('keydown', function () { intentional = true; });
+      video.addEventListener('play', function () { previous = video.currentTime; start(); });
+      video.addEventListener('seeking', function () { previous = null; });
+      video.addEventListener('timeupdate', function () {
+        if (video.seeking || video.paused || document.visibilityState !== 'visible') {
+          previous = video.currentTime; return;
+        }
+        if (!intentional) return;
+        start();
+        var from = previous, delta = previous == null ? 0 : video.currentTime - previous;
+        previous = video.currentTime;
+        if (delta > 0 && delta < 2.5) {
+          ranges.push([from, video.currentTime]);
+          ranges.sort(function (a, b) { return a[0] - b[0]; });
+          ranges = ranges.reduce(function (merged, range) {
+            var tail = merged[merged.length - 1];
+            if (tail && range[0] <= tail[1] + 0.05) tail[1] = Math.max(tail[1], range[1]);
+            else merged.push(range.slice());
+            return merged;
+          }, []);
+        }
+        if (!isFinite(video.duration) || video.duration <= 0) return;
+        var watched = ranges.reduce(function (sum, range) { return sum + range[1] - range[0]; }, 0);
+        [25, 50, 75, 90].forEach(function (percent) {
+          if (!milestones[percent] && watched >= video.duration * percent / 100) {
+            milestones[percent] = true;
+            track('video-watch-' + percent, '视频观看达 ' + percent + '%', name());
+          }
+        });
+      });
+      video.addEventListener('ended', function () {
+        if (intentional && milestones[90] && !milestones.complete) {
+          milestones.complete = true;
+          track('video-complete', '视频播放完成', name());
+        }
+      });
+    });
+
+    var depths = {};
+    function depth() {
+      if (document.visibilityState !== 'visible') return;
+      var height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+      if (height <= window.innerHeight + 1) return;
+      var progress = (window.scrollY + window.innerHeight) / height * 100;
+      [50, 90].forEach(function (percent) {
+        if (progress >= percent && !depths[percent]) {
+          depths[percent] = true;
+          track('read-depth-' + percent, '页面阅读至 ' + percent + '%');
+        }
+      });
+    }
+    window.addEventListener('scroll', depth, {passive: true});
+    // A scroll is required, so a short page's initial viewport does not count as reading.
+    var visibleSeconds = 0, last = Date.now(), dwell = {}, visible = document.visibilityState === 'visible';
+    function accrue() {
+      var now = Date.now();
+      if (visible) visibleSeconds += Math.min((now - last) / 1000, 5);
+      last = now;
+      [30, 60].forEach(function (seconds) {
+        if (visibleSeconds >= seconds && !dwell[seconds]) {
+          dwell[seconds] = true;
+          track('visible-time-' + seconds, '页面前台停留 ' + seconds + ' 秒');
+        }
+      });
+    }
+    var dwellTimer = setInterval(accrue, 1000);
+    document.addEventListener('visibilitychange', function () {
+      accrue();
+      visible = document.visibilityState === 'visible';
+    });
+    window.addEventListener('pagehide', function () { accrue(); clearInterval(dwellTimer); flush(); });
+    window.addEventListener('pageshow', function (event) {
+      if (event.persisted) { last = Date.now(); visible = document.visibilityState === 'visible'; dwellTimer = setInterval(accrue, 1000); }
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
