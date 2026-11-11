@@ -3,19 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://zhaozhengshen.github.io/research/me5402-sorting.html">
 <meta property="og:url" content="https://zhaozhengshen.github.io/research/me5402-sorting.html">
 <meta property="og:image" content="https://zhaozhengshen.github.io/assets/profile_photo.jpg">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Vision-based object sorting with deep reinforcement learning | Zhaozheng Shen">
-<meta property="og:description" content="Zhaozheng Shen (沈召正), PhD student at the National University of Singapore, working on construction robotics and automation: tower-crane control, robotic finishing, autonomous visual data collection and robotic disassembly.">
+<meta property="og:description" content="Zhaozheng Shen (沈召正), PhD student and Research Engineer at the National University of Singapore, working on learning-based control and motion planning for robotic systems: reinforcement learning and model-based control of underactuated tower cranes, and robotic interior finishing for prefabricated (PPVC) modules.">
+<meta property="og:site_name" content="Zhaozheng Shen">
 <meta name="twitter:card" content="summary">
-<meta name="description" content="Zhaozheng Shen (沈召正), PhD student at the National University of Singapore, working on construction robotics and automation: tower-crane control, robotic finishing, autonomous visual data collection and robotic disassembly.">
+<meta name="description" content="Zhaozheng Shen (沈召正), PhD student and Research Engineer at the National University of Singapore, working on learning-based control and motion planning for robotic systems: reinforcement learning and model-based control of underactuated tower cranes, and robotic interior finishing for prefabricated (PPVC) modules.">
+<meta name="robots" content="index, follow">
 <title>Vision-based object sorting with deep reinforcement learning | Zhaozheng Shen</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <script>if(/[?&]lang=zh/.test(location.search))document.documentElement.setAttribute('data-lang','zh');</script>
-<link rel="stylesheet" href="../assets/site.css">
-<script src="../assets/site.js?v=20261031-events1"></script>
+<link rel="stylesheet" href="../assets/site.css?v=20261111">
+<script src="../assets/site.js?v=20261111"></script>
 <script data-goatcounter="https://zhaozheng.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
@@ -30,14 +32,14 @@
   <div class="crumb"><a href="../index.html"><span data-l="en">Home</span><span data-l="zh">首页</span></a><span>/</span><a href="../research.html#me5402-sorting"><span data-l="en">Research</span><span data-l="zh">研究</span></a><span>/</span><span><span data-l="en">Vision-based object sorting with deep reinforcement learning</span><span data-l="zh">基于视觉与深度强化学习的物体分拣</span></span></div>
   <div class="p-hero-grid">
     <div>
-      <div class="chips"><span class="chip blue"><span data-l="en">Course project · 2026</span><span data-l="zh">课程项目 · 2026</span></span><span class="chip">Deep RL</span><span class="chip">Pick-and-place</span><span class="chip">CoppeliaSim</span><span class="chip">PyTorch</span></div>
+      <div class="chips"><span class="chip blue"><span data-l="en">Course project · group · 2026</span><span data-l="zh">课程项目 · 小组 · 2026</span></span><span class="chip">Deep RL</span><span class="chip">Pick-and-place</span><span class="chip">CoppeliaSim</span><span class="chip">PyTorch</span></div>
       <h1><span data-l="en">Vision-based object sorting with deep reinforcement learning</span><span data-l="zh">基于视觉与深度强化学习的物体分拣</span></h1>
       <p data-l="en" class="sub">NUS ME5402 Advanced Robotics · Part 1 group project (Group 5)</p><p data-l="zh" class="sub">新加坡国立大学 ME5402 高级机器人学 · 第一部分小组项目（第 5 组）</p>
       <div class="q"><span data-l="en">Can a policy that learns where to push, grasp and place from raw heightmaps sort a cluttered table, and does a simple perception layer on top make it more reliable?</span><span data-l="zh">直接从高度图学习推、抓、放位置的策略能否完成杂乱桌面的分拣？在其上加一层简单的感知规则能否让它更可靠？</span></div>
       <p data-l="en">A UR5 arm with an RG2 gripper sorts coloured blocks into matching bins. A pixel-wise Q-learning policy (DRLSorting, Bao et al., Robotica 2022) looks at an RGB-D heightmap and decides where to push, grasp and place. I reproduced the published policy in CoppeliaSim and added the perception layer our group proposed: contour-centred grasp points, explicit target-bin placing and no repeat of failed grasps.</p><p data-l="zh">UR5 机械臂配 RG2 夹爪，把彩色积木分拣到同色料框。像素级 Q 学习策略（DRLSorting，Bao 等，Robotica 2022）读取 RGB-D 高度图，决定在哪里推、抓与放。我在 CoppeliaSim 中复现了论文公开的策略，并加入小组提出的感知层：按轮廓质心抓取、显式选择目标料框放置、不重复失败的抓取。</p>
-      <p class="small muted" style="margin-top:14px"><span data-l="en">Role:</span><span data-l="zh">个人贡献：</span> <span data-l="en">Group project (4 students); I presented the reinforcement-learning formulation and its literature review in the interim presentation. The simulation runs, perception layer and evaluation on this page were redone in October 2026.</span><span data-l="zh">4 人小组项目；我在中期汇报中负责强化学习建模及其文献综述部分。本页的仿真运行、感知层与评估为 2026 年 10 月重新完成。</span></p>
+      <p class="myrole"><b><span data-l="en">My role:</span><span data-l="zh">我的工作：</span></b> <span data-l="en">Group project (4 students); I presented the reinforcement-learning formulation and its literature review in the interim presentation. The simulation runs, perception layer and evaluation on this page were redone in October 2026.</span><span data-l="zh">4 人小组项目；我在中期汇报中负责强化学习建模及其文献综述部分。本页的仿真运行、感知层与评估为 2026 年 10 月重新完成。</span></p>
     </div>
-    <div><figure class="media-frame"><div class="media"><img class="zoomable" loading="lazy" src="../assets/me5402_sort_scene.jpg" alt="The sorting scene in CoppeliaSim, seen by the policy’s RGB-D camera." data-alt-en="The sorting scene in CoppeliaSim, seen by the policy’s RGB-D camera." data-alt-zh="CoppeliaSim 中的分拣场景（策略所用 RGB-D 相机视角）。"></div><figcaption><span data-l="en">The sorting scene in CoppeliaSim, seen by the policy’s RGB-D camera.</span><span data-l="zh">CoppeliaSim 中的分拣场景（策略所用 RGB-D 相机视角）。</span></figcaption></figure></div>
+    <div><figure class="media-frame"><div class="media"><img class="zoomable" loading="lazy" src="../assets/me5402_sort_scene.jpg" width="640" height="480" alt="The sorting scene in CoppeliaSim, seen by the policy’s RGB-D camera." data-alt-en="The sorting scene in CoppeliaSim, seen by the policy’s RGB-D camera." data-alt-zh="CoppeliaSim 中的分拣场景（策略所用 RGB-D 相机视角）。"></div><figcaption><span data-l="en">The sorting scene in CoppeliaSim, seen by the policy’s RGB-D camera.</span><span data-l="zh">CoppeliaSim 中的分拣场景（策略所用 RGB-D 相机视角）。</span></figcaption></figure></div>
   </div>
   
 </div></section><div class="wrap p-body"><aside class="toc"><h5><span data-l="en">On this page</span><span data-l="zh">本页内容</span></h5><a href="#overview"><span data-l="en">Overview</span><span data-l="zh">概览</span></a><a href="#pipeline"><span data-l="en">① Proposal → pipeline</span><span data-l="zh">① 方案与实现</span></a><a href="#policy"><span data-l="en">② Inside the policy</span><span data-l="zh">② 策略在想什么</span></a><a href="#training"><span data-l="en">③ Learning curves</span><span data-l="zh">③ 学习曲线</span></a><a href="#scope"><span data-l="en">Scope</span><span data-l="zh">说明</span></a></aside><div><section class="p-sec" id="overview"><div class="kicker"><span data-l="en">Course project · ME5402 Part 1</span><span data-l="zh">课程项目 · ME5402 第一部分</span></div><h2 class="h2"><span data-l="en">Overview</span><span data-l="zh">概览</span></h2>
@@ -72,9 +74,8 @@
       </ul>
       <a class="rel-card" href="grasp-carry-replanning.html"><small><span data-l="en">Follow-up</span><span data-l="zh">后续工作</span></small><b><span data-l="en">Carrying a part through clutter with online replanning</span><span data-l="zh">杂乱工作台上的夹持搬运与在线重规划</span></b></a></section></div></div></main>
 <footer class="foot"><div class="wrap">
-  <span>© 2026 Zhaozheng Shen · <a href="mailto:zhaozhengcee@u.nus.edu">zhaozhengcee@u.nus.edu</a> · <span data-l="en">Updated</span><span data-l="zh">更新于</span> 2026-10-31</span>
-
+  <span>© 2026 Zhaozheng Shen · <a href="mailto:zhaozhengcee@u.nus.edu">zhaozhengcee@u.nus.edu</a> · <a href="https://orcid.org/0009-0005-9913-3886" target="_blank" rel="noopener">ORCID</a> · <a href="https://github.com/zhaozhengshen" target="_blank" rel="noopener">GitHub</a> · <span data-l="en">Updated</span><span data-l="zh">更新于</span> 2026-11-10</span>
 </div></footer>
-<script src="../assets/me5402_sort.js"></script>
+<script src="../assets/me5402_sort.js?v=20261111"></script>
 </body>
 </html>

@@ -169,7 +169,7 @@
     }
     table(); presetOptions();
     SITE.onLang(function () { table(); presetOptions(); info(sel); });
-    SITE.lazy(el, function () {
+    SITE.gate(el, function () {
       SITE.load(RUNTIME).then(function () {
         return makeViewer(el, { onPick: function (g) { info(g ? idx.get(g) : null); $('#cvPreset').value = ''; } });
       }).then(function (v) {
@@ -179,7 +179,7 @@
         $('#cvPreset').onchange = function (e) { if (e.target.value === '') return info(null); var i = +e.target.value; info(i); viewer.focus(guids[i]); };
         info(presets[0][1]); $('#cvPreset').value = presets[0][1];
       });
-    });
+    }, 'Load the interactive 3D BIM model (about 4 MB)', '加载交互式三维 BIM 模型（约 4 MB）');
   }
 
   /* ---------- ② DADGA ---------- */
@@ -360,13 +360,13 @@
     p.set(T * 0.42);
     SITE.onLang(function () { stats(); speedOpts(); if (fc) drawCharts(); p.set(p.st.t); });
     SITE.lazy($('#floorChart'), function () { SITE.load([A + 'portal-echarts.js']).then(function () { fc = chart($('#floorChart')); cu = chart($('#cumChart')); drawCharts(); p.set(p.st.t); }); });
-    SITE.lazy(el, function () {
+    SITE.gate(el, function () {
       SITE.load(RUNTIME).then(function () { return makeViewer(el); }).then(function (v) {
         viewer = v;
         el.querySelectorAll('[data-view]').forEach(function (b) { b.onclick = function () { viewer.view(b.dataset.view); }; });
         p.set(p.st.t);
       });
-    });
+    }, 'Load the interactive 3D BIM model (about 4 MB)', '加载交互式三维 BIM 模型（约 4 MB）');
   }
 
   document.addEventListener('DOMContentLoaded', function () {

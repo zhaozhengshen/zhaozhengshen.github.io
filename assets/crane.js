@@ -11,12 +11,12 @@
   function merge() { var o = {}; for (var i = 0; i < arguments.length; i++) for (var k in arguments[i]) o[k] = arguments[i][k]; return o; }
 
   var VIEWS = [
-    ['portal_crane_unity.mp4', 'portal_crane_unity_frame.png', ['Whole crane', '塔吊全景'], ['The complete crane and the full lift, first 45 s at 1×.', '完整塔吊与吊运全过程，1× 前 45 秒。']],
-    ['unity_01_Oblique_Transport.mp4', '', ['Oblique transport', '斜侧运输'], ['Oblique camera on the payload and rope during transport.', '斜侧机位观察运输段的吊物与绳索。']],
-    ['unity_02_Overhead_Path.mp4', '', ['Overhead path', '俯视路径'], ['Top view of the payload path, start and target tolerance circle.', '俯视吊物轨迹、起点与目标容差圈。']],
-    ['unity_03_Side_Rope_and_Sway.mp4', '', ['Side: rope & sway', '侧视摆动'], ['Side view of the rope and sway along the transport direction.', '侧视绳索与沿运输方向的摆动。']],
-    ['unity_04_Front_Transverse_Sway.mp4', '', ['Front: transverse sway', '正视横摆'], ['Front view of transverse (cross-wind) sway.', '正视横向（侧风方向）摆动。']],
-    ['unity_05_Close_Target_and_Settling.mp4', '', ['Target close-up', '目标近景'], ['Close-up of the target region: arrival, braking and settling.', '目标区域近景：到位、制动与停稳。']]
+    ['portal_crane_unity.mp4', 'portal_crane_unity_frame.webp', ['Whole crane', '塔吊全景'], ['The complete crane and the full lift, first 45 s at 1×.', '完整塔吊与吊运全过程，1× 前 45 秒。']],
+    ['unity_01_Oblique_Transport_web.mp4', 'unity_01_Oblique_Transport_poster.jpg', ['Oblique transport', '斜侧运输'], ['Oblique camera on the payload and rope during transport.', '斜侧机位观察运输段的吊物与绳索。']],
+    ['unity_02_Overhead_Path.mp4', 'unity_02_Overhead_Path_poster.jpg', ['Overhead path', '俯视路径'], ['Top view of the payload path, start and target tolerance circle.', '俯视吊物轨迹、起点与目标容差圈。']],
+    ['unity_03_Side_Rope_and_Sway.mp4', 'unity_03_Side_Rope_and_Sway_poster.jpg', ['Side: rope & sway', '侧视摆动'], ['Side view of the rope and sway along the transport direction.', '侧视绳索与沿运输方向的摆动。']],
+    ['unity_04_Front_Transverse_Sway.mp4', 'unity_04_Front_Transverse_Sway_poster.jpg', ['Front: transverse sway', '正视横摆'], ['Front view of transverse (cross-wind) sway.', '正视横向（侧风方向）摆动。']],
+    ['unity_05_Close_Target_and_Settling.mp4', 'unity_05_Close_Target_and_Settling_poster.jpg', ['Target close-up', '目标近景'], ['Close-up of the target region: arrival, braking and settling.', '目标区域近景：到位、制动与停稳。']]
   ];
 
   function unity() {
@@ -25,7 +25,7 @@
     function caption() {
       var v = VIEWS[cur];
       cap.innerHTML = '<b>' + L(v[2][0], v[2][1]) + '</b>' + L(v[3][0], v[3][1]) + ' ' +
-        L('6 m/s constant wind · 20 t payload · recorded from the Unity camera.', '恒风 6 m/s · 吊物 20 t · Unity 相机录制。');
+        L('Recorded from the Unity camera.', 'Unity 相机录制。');
     }
     function render() { tabs.innerHTML = VIEWS.map(function (v, i) { return '<button type="button" data-i="' + i + '" class="' + (i === cur ? 'on' : '') + '">' + L(v[2][0], v[2][1]) + '</button>'; }).join(''); caption(); }
     function show(i, play) {
@@ -36,7 +36,11 @@
     }
     tabs.addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) show(+b.dataset.i, true); });
     render();
-    SITE.lazy(vid, function () { if (!started) { started = true; show(cur, false); } }, '500px 0px');
+    // autoplays (muted, looped) while visible, like every video on the site
+    vid.muted = true; vid.loop = true;
+    show(cur, false); started = true;
+    var seen = false;
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { es.forEach(function (e) { seen = e.isIntersecting; if (seen) vid.play().catch(function () {}); else vid.pause(); }); }, { threshold: 0.25 }).observe(vid);
     SITE.onLang(render);
   }
 
@@ -83,11 +87,17 @@
   }
 
   // interactive trajectory viewer: one self-contained page per language, loaded when scrolled near
+  // the ~8 MB interactive viewer is created only after an explicit click
   function viewer() {
-    var f = $('#trajViewer'); if (!f) return;
-    var on = false;
-    function set() { if (on) f.src = f.getAttribute('data-src-' + SITE.lang); }
-    SITE.lazy(f, function () { on = true; set(); }, '600px 0px');
+    var gate = $('#trajGate'), btn = $('#trajLoad'); if (!gate || !btn) return;
+    var f = null;
+    function set() { if (f) f.src = gate.getAttribute('data-src-' + SITE.lang); }
+    btn.addEventListener('click', function () {
+      if (f) return;
+      f = document.createElement('iframe');
+      f.className = 'viewer-frame'; f.title = L('Trajectory and swing viewer', '轨迹与摆角查看器');
+      gate.appendChild(f); set(); btn.disabled = true;
+    });
     SITE.onLang(set);
   }
 

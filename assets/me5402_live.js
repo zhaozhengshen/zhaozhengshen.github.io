@@ -117,7 +117,7 @@
       requestAnimationFrame(tick);
     }
 
-    SITE.lazy(canvas, function () {
+    SITE.gate(canvas, function () {
       $('lvNotice').textContent = L('Loading meshes and recorded runs (about 24 MB)…', '正在载入模型与实验记录（约 24 MB）…');
       SITE.load([A + 'me5402_live_replay.js', A + 'me5402_live_mesh.js', A + 'me5402_live_render.js']).then(function () {
         DATA = window.LAB_DATA; AUDIT = window.LIVE_AUDIT;
@@ -125,7 +125,7 @@
         options(); table(); wire(); load();
         SITE.onLang(function () { var v = $('lvCase').value; options(); $('lvCase').value = v; table(); load(); R.draw && draw(); });
       }).catch(function () { $('lvNotice').textContent = L('The replay data could not be loaded.', '实验记录载入失败。'); });
-    }, '200px 0px');
+    }, 'Load the 3D replay (about 24 MB)', '加载三维回放（约 24 MB）');
   }
 
   document.addEventListener('DOMContentLoaded', function () { try { init(); } catch (e) { console.error(e); } });

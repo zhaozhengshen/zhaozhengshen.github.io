@@ -20,6 +20,18 @@
       }, { rootMargin: margin || '400px 0px' });
       io.observe(el);
     },
+    // click-to-load for heavy interactive viewers: nothing is fetched until the visitor asks for it
+    gate: function (el, fn, en, zh) {
+      if (!el) return;
+      if (params.get('eager') === '1') { fn(); return; }
+      var host = el.closest('.viewer, .livestage') || el.parentNode;
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'gate-btn';
+      var txt = function () { b.textContent = SITE.L(en, zh); };
+      txt(); SITE.onLang(txt);
+      host.appendChild(b);
+      b.addEventListener('click', function () { b.parentNode && b.parentNode.removeChild(b); fn(); });
+    },
     _loaded: {},
     load: function (srcs) {
       return srcs.reduce(function (p, src) {
@@ -104,9 +116,24 @@
       lb.classList.add('on');
     });
 
-    // videos load their file only when they come near the viewport
-    document.querySelectorAll('video[data-src]').forEach(function (v) {
-      SITE.lazy(v, function () { v.src = v.getAttribute('data-src'); v.removeAttribute('data-src'); if (v.hasAttribute('data-autoplay')) { v.muted = true; v.play().catch(function () {}); } }, '600px 0px');
+    // videos: the file is attached when the video comes near the viewport; [data-autoplay] videos play (muted, looped)
+    // while at least a quarter of them is visible and pause when they scroll away. Reduced-motion users get the poster.
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var attach = function (v) { if (v.hasAttribute('data-src')) { v.src = v.getAttribute('data-src'); v.removeAttribute('data-src'); return true; } return false; };
+    SITE.autoplay = function (v) {
+      if (!v.hasAttribute('data-autoplay')) { SITE.lazy(v, function () { attach(v); }, '600px 0px'); return; }
+      v.muted = true;
+      if (still) { v.removeAttribute('data-autoplay'); v.controls = true; SITE.lazy(v, function () { attach(v); }, '600px 0px'); return; }
+      if (!('IntersectionObserver' in window)) { attach(v); v.play().catch(function () {}); return; }
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) { attach(v); v.play().catch(function () {}); } else if (!v.paused) v.pause();
+        });
+      }, { threshold: 0.25 }).observe(v);
+    };
+    document.querySelectorAll('video').forEach(function (v) {
+      SITE.autoplay(v);
+      v.addEventListener('play', function () { if (attach(v)) v.play().catch(function () {}); });
     });
   });
 })();
